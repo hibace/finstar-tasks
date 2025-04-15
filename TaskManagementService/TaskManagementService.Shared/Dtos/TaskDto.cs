@@ -1,4 +1,3 @@
-using System;
 using TaskManagementService.Domain.Enums;
 
 namespace TaskManagementService.Shared.Dtos

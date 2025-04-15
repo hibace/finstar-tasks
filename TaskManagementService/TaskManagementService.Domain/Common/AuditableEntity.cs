@@ -1,5 +1,3 @@
-using System;
-
 namespace TaskManagementService.Domain.Common
 {
     /// <summary>

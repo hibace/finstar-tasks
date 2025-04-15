@@ -1,17 +1,10 @@
-using System;
-using System.Reflection;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using TaskManagementService.Application.Commands;
-using TaskManagementService.Application.Queries;
 using TaskManagementService.Core.Interfaces;
 using TaskManagementService.Infrastructure.Data;
 using TaskManagementService.Infrastructure.MessageBus;
-using TaskManagementService.Infrastructure.Options;
 using TaskManagementService.Infrastructure.Repositories;
 
 namespace TaskManagementService.API.Extensions
@@ -49,20 +42,26 @@ namespace TaskManagementService.API.Extensions
             services.AddValidatorsFromAssembly(typeof(CreateTaskCommand).Assembly);
 
             // Add CAP
-            services.AddCap(x =>
+            services.AddCap(capOptions =>
             {
-                x.UseEntityFramework<ApplicationDbContext>();
-                x.UsePostgreSql(connectionString);
-                x.UseRabbitMQ(o =>
+                capOptions.UseEntityFramework<ApplicationDbContext>();
+                capOptions.UsePostgreSql(connectionString);
+                capOptions.UseRabbitMQ(o =>
                 {
                     o.HostName = configuration.GetValue<string>("RabbitMQ:HostName") ?? "localhost";
                     o.UserName = configuration.GetValue<string>("RabbitMQ:UserName") ?? "guest";
                     o.Password = configuration.GetValue<string>("RabbitMQ:Password") ?? "guest";
                 });
-                
+
+                capOptions.UseDashboard(d =>
+                {
+                    d.PathMatch = "/cap-dashboard";
+                    d.StatsPollingInterval = 5000;
+                });
+
                 // Настройка повторных попыток
-                x.FailedRetryCount = 5;
-                x.FailedRetryInterval = 60;
+                capOptions.FailedRetryCount = 5;
+                capOptions.FailedRetryInterval = 60;
             });
 
             // Add Message Bus

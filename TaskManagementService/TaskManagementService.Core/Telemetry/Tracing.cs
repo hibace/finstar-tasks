@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using OpenTelemetry.Trace;
 
 namespace TaskManagementService.Core.Telemetry
 {

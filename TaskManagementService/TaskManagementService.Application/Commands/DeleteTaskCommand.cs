@@ -1,10 +1,6 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using MediatR;
 using TaskManagementService.Core.Interfaces;
 using TaskManagementService.Core.Telemetry;
-using TaskManagementService.Domain.Entities;
 
 namespace TaskManagementService.Application.Commands
 {

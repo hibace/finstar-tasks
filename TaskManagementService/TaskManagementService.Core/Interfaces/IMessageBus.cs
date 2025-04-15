@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using TaskManagementService.Domain.Entities;
 
 namespace TaskManagementService.Core.Interfaces

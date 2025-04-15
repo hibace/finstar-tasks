@@ -1,12 +1,7 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using TaskManagementService.Core.Interfaces;
 using TaskManagementService.Core.Telemetry;
-using TaskManagementService.Domain.Entities;
-using TaskManagementService.Domain.Enums;
 using TaskManagementService.Shared.Dtos;
 
 namespace TaskManagementService.Application.Commands

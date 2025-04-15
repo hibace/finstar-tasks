@@ -1,6 +1,3 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using Moq;
 using TaskManagementService.Application.Commands;
 using TaskManagementService.Core.Interfaces;

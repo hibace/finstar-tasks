@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Builder;
 using TaskManagementService.API.Middleware;
 
 namespace TaskManagementService.API.Extensions
